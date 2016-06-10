@@ -45,3 +45,8 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.suo
+Api/bin/Api.dll
+*.pdb
+Api/obj/Debug/Api.csprojResolveAssemblyReference.cache
+*.pdb
