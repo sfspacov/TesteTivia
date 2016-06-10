@@ -5,6 +5,6 @@ namespace Services.Interfaces
 {
     public interface IHabilidadeService
     {
-        IEnumerable<HabilidadeVM> List(int? id = null);
+        IEnumerable<HabilidadeVM> List();
     }
 }

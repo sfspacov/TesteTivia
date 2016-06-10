@@ -10,15 +10,15 @@ namespace Services.Classes
         public class Fabricante : IFabricanteService
         {
             private IBaseService<Domain.Models.Fabricante> _base;
+
             public Fabricante()
             {
                 _base = new BaseService<Domain.Models.Fabricante>(contexto);
             }
-            public IEnumerable<FabricanteVM> List(int? id = default(int?))
-            {
-                var query = id == null ? _base.List() : _base.List().Where(x => x.Id == id);
 
-                var lista = query.OrderBy(x => x.Nome).ToList();
+            public IEnumerable<FabricanteVM> List()
+            {
+                var lista = _base.List().OrderBy(x => x.Nome).ToList();
 
                 foreach (var item in lista)
                 {

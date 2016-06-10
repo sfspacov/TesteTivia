@@ -6,11 +6,11 @@ namespace Services.Interfaces
     public interface IVeiculoService
     {
         void Add(VeiculoVM viewModel);
+
         void Edit(VeiculoVM viewModel);
 
-        IEnumerable<VeiculoVM> List(int? id = null);
-        void Remove(int id);
+        IEnumerable<VeiculoVM> List();
 
-        VeiculoVM Find(int id);
+        void Remove(int id);
     }
 }

@@ -16,11 +16,9 @@ namespace Services.Classes
                 _base = new BaseService<Domain.Models.TipoDeVeiculo>(contexto);
             }
 
-            public IEnumerable<TipoDeVeiculoVM> List(int? id = default(int?))
+            public IEnumerable<TipoDeVeiculoVM> List()
             {
-                var query = id == null ? _base.List() : _base.List().Where(x => x.Id == id);
-
-                var lista = query.OrderBy(x => x.Nome).ToList();
+                var lista = _base.List().OrderBy(x => x.Nome).ToList();
 
                 foreach (var item in lista)
                 {

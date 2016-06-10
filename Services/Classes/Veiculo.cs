@@ -79,19 +79,9 @@ namespace Services.Classes
                 _base.Edit(entidade);
             }
 
-            public VeiculoVM Find(int id)
+            public IEnumerable<VeiculoVM> List()
             {
-                return List(id).FirstOrDefault();
-            }
-
-            public IEnumerable<VeiculoVM> List(int? id = null)
-            {
-                var query = _base.List();
-
-                if (id != null)
-                    query = query.Where(x => x.Id == id);
-
-                var lista = query.OrderBy(x => x.Nome).ToList();
+                var lista = _base.List().OrderBy(x => x.Nome).ToList();
 
                 foreach (var item in lista)
                 {

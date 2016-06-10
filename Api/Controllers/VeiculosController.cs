@@ -21,11 +21,6 @@ namespace Api.Controllers
             return _veiculoService.List();
         }
 
-        public VeiculoVM Get(int id)
-        {
-            return _veiculoService.Find(id);
-        }
-
         public void Post([FromBody]VeiculoVM viewModel)
         {
             if (ModelState.IsValid)
