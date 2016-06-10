@@ -50,3 +50,4 @@ Api/bin/Api.dll
 *.pdb
 Api/obj/Debug/Api.csprojResolveAssemblyReference.cache
 *.pdb
+*.suo

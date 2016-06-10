@@ -14,6 +14,7 @@ angular.module('cadastro', ["ui.bootstrap"])
           Model: {},
           Cancelar: function () {
               $scope.Veiculo.Model = {};
+              $scope.Editar = false;
           },
           Deletar: function (id) {
 
