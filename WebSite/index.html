@@ -1,0 +1,241 @@
+<html ng-app="cadastro">
+<head>
+    <title>
+        Cadastro de Carros
+    </title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+
+    <script src="js/cadastroController.js"></script>
+    <script src="js/ui-bootstrap-tpls-1.3.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body ng-controller="CadastroController" style="max-width: 100%; overflow-x: hidden; padding:18px;">
+    <form class="form-horizontal" name="meuForm" novalidate>
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Cadastre o carro</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-1 control-label" for="txtNome">Nome</label>
+                <div class="col-md-4">
+                    <input id="txtNome" name="txtNome" type="text" maxlength="50" ng-model="Veiculo.Model.Nome" class="form-control input-md" required>
+                </div>
+                <label class="col-md-2 control-label" for="selectTipoVeiculo">Tipo de Veiculo</label>
+                <div class="col-md-4">
+                    <select id="selectTipoVeiculo" name="selectTipoVeiculo" class="form-control"
+                            ng-model="Veiculo.Model.TipoDeVeiculo"
+                            ng-options="entidade as entidade.Nome for entidade in Veiculo.Tipos track by entidade.Id"
+                            required></select>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-1 control-label" for="txtAno">Ano</label>
+                <div class="col-md-1">
+                    <input id="txtAno" name="txtAno" type="number" min="1" max="2016" class="form-control input-md" required
+                           ng-model="Veiculo.Model.Ano" 
+                           ng-keyup="ValidarNumero(Veiculo.Model, 'Ano')"
+                           >
+                </div>
+                <label class="col-md-1 control-label" for="txtCor">Cor</label>
+                <div class="col-md-2">
+                    <input id="txtCor" name="txtCor" type="text" maxlength="15" ng-model="Veiculo.Model.Cor" class="form-control input-md" required>
+                </div>
+                <label class="col-md-2 control-label" for="selectFabricante">Fabricante</label>
+                <div class="col-md-4">
+                    <select id="selectFabricante" name="selectFabricante" class="form-control"
+                            ng-model="Veiculo.Model.Fabricante"
+                            ng-options="entidade as entidade.Nome for entidade in Veiculo.Fabricantes track by entidade.Id"
+                            required></select>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-6 control-label" for="selectCaracteristicas">Principais habilidades</label>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3"></div>
+                    <div class="col-md-4">
+                        <select id="selectCaracteristicas" name="selectCaracteristicas" class="form-control" multiple="multiple" size="5"
+                                ng-model="Veiculo.Model.Habilidades"
+                                ng-options="entidade as entidade.Nome for entidade in Veiculo.Habilidades track by entidade.Id"
+                                required></select>
+                    </div>
+                </div>
+
+            <!-- Button (Double) -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="btnSave"></label>
+                <div class="col-md-8">
+                    <button id="btnSave" name="btnSave" ng-click="Veiculo.Salvar()" class="btn btn-success">Salvar</button>
+                    <button id="btnCancelar" name="btnCancelar"  ng-click="Veiculo.Cancelar()" class="btn btn-danger">Cancelar</button>
+                </div>
+            </div>
+        </fieldset>
+        <b>Carros cadastrados:</b> {{Veiculos.length}}<br /><br />
+
+        <div ng-if="Veiculos != null && Veiculos.length != 0">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <center>
+                                Nome
+                            </center>
+                        </th>
+                        <th>
+                            <center>
+                                Fabricante
+                            </center>
+                        </th>
+                        <th>
+                            <center>
+                                Nacionalidade
+                            </center>
+                        </th>
+                        <th>
+                            <center>
+                                Ano
+                            </center>
+                        </th>
+                        <th>
+                            <center>
+                                Cor
+                            </center>
+                        </th>
+                        <th>
+                            <center>
+                                Tipo de Veiculo
+                            </center>
+                        </th>
+                        <th>
+                            <center>
+                                Habilidades
+                            </center>
+                        </th>
+                        <th>
+                            <center>
+                                Ações
+                            </center>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="car in Veiculos| orderBy:'Nome'| startFrom:(currentPage - 1) * pageSize | limitTo:pageSize">
+                        <td>
+                            <center>
+                                {{car.Nome}}
+                            </center>
+                        </td>
+                        <td>
+                            <center>                                
+                                {{car.Fabricante.Nome}}<br />
+                                <img src="{{car.Fabricante.Logo}}" height="30" />
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <img src="{{car.Fabricante.Nacao.Bandeira}}" width="30" height="21" title="{{car.Fabricante.Nacao.Nome}}" style="border:1px solid #021a40;" />
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                {{car.Ano}}
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                {{car.Cor}}
+                            </center>
+                        </td>
+                        <td>
+                            <b>{{car.TipoDeVeiculo.Nome}}</b>: {{car.TipoDeVeiculo.Descricao}}
+                        </td>
+                        <td>
+                            <p ng-repeat="hab in car.Habilidades">
+                                <b>{{hab.Nome}}</b>: {{hab.Descricao}}
+                            </p>
+                        </td>
+                        <td style="cursor:pointer">
+                            <center>
+                                <img ng-click="Veiculo.Deletar(car.Id)" src="images/delete.ico" height="18" title="Deletar" />&nbsp;
+                                <img ng-click="Veiculo.Editar(car)" src="images/edit.png" height="18" title="Editar" />
+                            </center>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <center>
+                <uib-pagination total-items="Veiculos.length" boundary-links="true" ng-model="currentPage" items-per-page="pageSize"></uib-pagination>
+            </center>
+        </div>
+    </form>
+</body>
+</html>
+
+<div class="modal fade" id="loading" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="margin-top: 60%; max-width: 100px;margin-left: 33%;">
+            <center>
+                <b>
+                    Carregando...<br />
+                </b>
+                <img src="images/loading.gif" />
+            </center>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalAlerta" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content" style="margin-top: 40%;">
+            <center>
+                <h2 style="color:red" class="msgErro">
+                    <label id="lblErro"></label>
+                </h2>
+                <h2 style="color:darkseagreen" class="msgSucesso">
+                    Salvo com sucesso!
+                </h2>
+            </center>
+            <div class="modal-footer msgErro">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            <div class="modal-footer msgSucesso">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalConfirm" role="dialog" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">
+                    Atenção
+                </h4>
+            </div>
+            <div class="modal-body">
+                Deseja mesmo deletar este item?
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger" data-dismiss="modal">Não</a>
+                <a class="btn btn-success" id="btnConfirmSim" ng-click="Confirm()">Sim</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

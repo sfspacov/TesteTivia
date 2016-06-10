@@ -1,0 +1,9 @@
+C:\Users\sspacov\Documents\Exame\Api\Infra\bin\Debug\Infra.dll
+C:\Users\sspacov\Documents\Exame\Api\Infra\bin\Debug\Infra.pdb
+C:\Users\sspacov\Documents\Exame\Api\Infra\obj\Debug\Infra.csprojResolveAssemblyReference.cache
+C:\Users\sspacov\Documents\Exame\Api\Infra\obj\Debug\Infra.dll
+C:\Users\sspacov\Documents\Exame\Api\Infra\obj\Debug\Infra.pdb
+C:\Users\sspacov\Documents\GitHub\TesteTivia\Infra\bin\Debug\Infra.dll
+C:\Users\sspacov\Documents\GitHub\TesteTivia\Infra\bin\Debug\Infra.pdb
+C:\Users\sspacov\Documents\GitHub\TesteTivia\Infra\obj\Debug\Infra.dll
+C:\Users\sspacov\Documents\GitHub\TesteTivia\Infra\obj\Debug\Infra.pdb
